@@ -5,7 +5,7 @@ class Dinosaur:
         self.health = 100
 
     def attack(self, robot):
-        print(f'{self.name} hits {robot.name} for {self.attack_power}damage!')
+        print(f'{self.name} hits {robot.name} for {self.attack_power} damage!')
         robot.health = (robot.health - self.attack_power)
         if robot.health > 0:
             print(f'{robot.name} has {robot.health} health remaining!')
