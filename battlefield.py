@@ -3,7 +3,7 @@ from robot import Robot
 import time
 from time import sleep
 import random
-
+# 
 class Battlefield:
     def __init__(self):
         self.robot = Robot('MR Fighting Machine')
@@ -16,17 +16,17 @@ class Battlefield:
 
     def display_welcome(self):
         print('Welcome...')
-        sleep(1)
+        # sleep(1)
         print('\nto today\'s battle...')
-        sleep(2)
+        # sleep(2)
         print('\nROBOT')
-        sleep(.4)
+        # sleep(.4)
         print('\nVERSUS')
-        sleep(.4)
+        # sleep(.4)
         print('\nDINOSAUR!')
-        sleep(2)
+        # sleep(2)
         print('\nReady?')
-        sleep(.4)
+        # sleep(.4)
         print('\nFIGHT!')
 
 
@@ -35,18 +35,32 @@ class Battlefield:
         while self.dinosaur.health > 0 and self.robot.health > 0:
             round_counter += 1
             print(f'Round {round_counter}!')
-            print()
-            sleep(.75)
-            if self.dinosaur.health > 0:
-                self.dinosaur.attack(self.robot)
+            dino_initiative = 0
+            robot_initiative = 0
+            while dino_initiative == robot_initiative:
+                dino_initiative = self.roll_initiative()
+                robot_initiative = self.roll_initiative()
+            # sleep(.75)
+            if dino_initiative > robot_initiative:
+                print(f'{self.dinosaur.name} goes first!')
+                if self.dinosaur.health > 0:    
+                    self.dinosaur.attack(self.robot)
                 print()
-            sleep(.5)
-            print()
-            sleep(.5)
-            if self.robot.health > 0:
-                self.robot.attack(self.dinosaur)
-            print()
-            sleep(1)
+                # sleep(.5)
+                if self.robot.health > 0:
+                    self.robot.attack(self.dinosaur)
+                print()
+                # sleep(1)
+            else:
+                print(f'{self.robot.name} goes first!')
+                if self.robot.health > 0:
+                    self.robot.attack(self.dinosaur)
+                print()
+                # sleep(.5)
+                if self.dinosaur.health > 0:    
+                    self.dinosaur.attack(self.robot)
+                print()
+                # sleep(1)
 
     def display_winner(self):
         if self.dinosaur.health <= 0:
