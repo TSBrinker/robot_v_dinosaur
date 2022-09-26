@@ -1,4 +1,6 @@
 from weapon import Weapon
+import time
+from time import sleep
 
 class Robot:
     def __init__(self, name):
@@ -8,7 +10,9 @@ class Robot:
 
     def attack(self, dinosaur):
         print(f'{self.name} hits {dinosaur.name} for {self.active_weapon.attack_power} damage!')
-        dinosaur.health = (dinosaur.health - self.active_weapon.attack_power)
+        dinosaur.health -= self.active_weapon.attack_power
+        sleep(.4)
+        print()
         if dinosaur.health > 0:
             print(f'{dinosaur.name} has {dinosaur.health} health remaining!')
         else:
