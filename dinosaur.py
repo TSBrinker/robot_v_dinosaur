@@ -1,17 +1,24 @@
 import time
 from time import sleep
+import random
 
 class Dinosaur:
-    def __init__(self, name, attack_power):
+    def __init__(self, name, attack_power, health, speed, defense):
         self.name = name
         self.attack_power = attack_power
-        self.health = 100
+        self.health = health
+        self.speed = speed
+        self.defense = defense
+        self.initiative = 0
 
-    def attack(self, robot):
-        print(f'{self.name} hits {robot.name} for {self.attack_power} damage!')
-        robot.health -= self.attack_power
+    def attack(self, targets):
+        target = random.choice(targets)
+        print(f'{self.name} hits {target.name} for {self.attack_power} damage!')
+        target.health -= self.attack_power
         # sleep(.4)
-        if robot.health > 0:
-            print(f'{robot.name} has {robot.health} health remaining!')
+        if target.health > 0:
+            print(f'{target.name} has {target.health} health remaining!')
         else:
-            print(f'{robot.name} has no remaining health!')
+            print(f'{target.name} has no remaining health!')
+        return target
+
