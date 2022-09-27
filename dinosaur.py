@@ -10,8 +10,7 @@ class Dinosaur:
     def attack(self, robot):
         print(f'{self.name} hits {robot.name} for {self.attack_power} damage!')
         robot.health -= self.attack_power
-        sleep(.4)
-        print()
+        # sleep(.4)
         if robot.health > 0:
             print(f'{robot.name} has {robot.health} health remaining!')
         else:

@@ -43,6 +43,7 @@ class Battlefield:
             # sleep(.75)
             if dino_initiative > robot_initiative:
                 print(f'{self.dinosaur.name} goes first!')
+                print()
                 if self.dinosaur.health > 0:    
                     self.dinosaur.attack(self.robot)
                 print()
