@@ -14,18 +14,19 @@ class Robot:
         print('Select your weapon!')
         weapon_number = 1
         for weapon in weapons:
-            print (f'{weapon_number}: {weapon.name} [{weapon.attack_power}]')
+            print (f'[{weapon_number}]: {weapon.name} ({weapon.attack_power} power)')
             weapon_number += 1
         user_selection = int(input('Enter 1, 2, or 3 to select: '))
         while user_selection != 1 and user_selection != 2 and user_selection != 3:
             user_selection = int(input('Invalid entry, please only enter 1, 2, or 3: '))
         chosen_weapon = weapons[user_selection - 1]
+        sleep(.5)
         return chosen_weapon
 
-    def target_selection(self, targets): # There's a bug here that if the number of targets is reduced to 2 before all 3 attackers attack, therfore shortening the list, it'll skip ahead before the last attacker can attack
+    def target_selection(self, targets, combatants): # There's a bug here that if the number of targets is reduced to 2 before all 3 attackers attack, therfore shortening the list, it'll skip ahead before the last attacker can attack
         print('Enemies:')
         i = 1
-        for target in targets:
+        for combatant in combatants:
             print(f'[{i}] {target.name} ({target.health} health remaining)')
             i += 1
         target_index = 0
@@ -39,11 +40,12 @@ class Robot:
         return target
 
     def attack(self, targets):
+        sleep(1)
         target = self.target_selection(targets)
         self.active_weapon = self.weapon_selection()
         print(f'{self.name} hits {target.name} for {self.active_weapon.attack_power} damage!')
         target.health -= self.active_weapon.attack_power
-        # sleep(.4)
+        sleep(1)
         if target.health > 0:
             print(f'{target.name} has {target.health} health remaining!')
         else:

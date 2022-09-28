@@ -12,13 +12,15 @@ class Dinosaur:
         self.initiative = 0
 
     def attack(self, targets):
+        sleep(1)
         target = random.choice(targets)
         print(f'{self.name} hits {target.name} for {self.attack_power} damage!')
         target.health -= self.attack_power
-        # sleep(.4)
+        sleep(1)
         if target.health > 0:
             print(f'{target.name} has {target.health} health remaining!')
         else:
             print(f'{target.name} has no remaining health!')
+        print()
         return target
 

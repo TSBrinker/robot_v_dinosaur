@@ -22,13 +22,17 @@ class Battlefield:
         self.display_winner()
 
     def display_welcome(self):
-        print('Welcome to the fight! I\'ll make this cooler later!')
+        print('Welcome to the war-zone...')
+        sleep(1.5)
+        print('\nAre you prepared to fight?')
+        sleep(1)
 
     def choose_game_mode(self):
-        print('Choose your game mode:\n1. 1v1 Deathmatch\n2. Team Battle')
-        game_mode = input('Select 1 or 2: ')
+        print('[1] 1v1 Deathmatch\n[2] Team Battle')
+        game_mode = input('Select your gamemode: ')
         while game_mode != '1' and game_mode != '2':
             game_mode = input('Invalid selection. Please select 1 or 2: ')
+        sleep(.5)
         return game_mode
 
     def form_team(self, species, team_size):
@@ -39,29 +43,40 @@ class Battlefield:
                 team.append(teammate)
         return team
 
-    def roll_initiative(self, fighter):
-        initiative = random.randrange(1, 21) + fighter.speed
-        return initiative
+    # def roll_initiative(self, fighter):
+    #     initiative = random.randrange(1, 21) + fighter.speed
+    #     return initiative
 
 
     def battle_phase(self, dinos, bots):
         round_counter = 0
         all_fighters = list(dinos) + list(bots)
+        sleep(2)
+        print('Something\'s coming...')
+        enemies = ''
+        for dino in dinos:
+            enemies += f'{dino.name}!'
+        sleep(1.5)
+        print(enemies)
+        sleep(1.5)
         while len(dinos) > 0 and len(bots) > 0:
             round_counter += 1
-            print(f'!!!!!!!!!! ROUND {round_counter} !!!!!!!!!!\n')
-            for fighter in all_fighters:
-                fighter.initiative = self.roll_initiative(fighter)
+            print(f'\nRound {round_counter}!\n')
+            sleep(1)
+            # for fighter in all_fighters:
+            #     fighter.initiative = self.roll_initiative(fighter)
             # all_fighters.sort(key=str(fighter.initiative))
             for fighter in all_fighters:
                 if isinstance(fighter, Dinosaur):
-                    print(f'{fighter.name}\'s turn!\n\n')
+                    sleep(1.5)
+                    print(f'{fighter.name}\'s turn!\n')
                     target = fighter.attack(bots)
                     if target.health <= 0:
                         all_fighters.remove(target)
                         self.robots.remove(target)
                 else:
-                    print(f'{fighter.name}\'s turn!\n\n')
+                    sleep(1.5)
+                    print(f'{fighter.name}\'s turn!\n')
                     target = fighter.attack(dinos)
                     if target.health <= 0:
                         all_fighters.remove(target)
@@ -70,9 +85,9 @@ class Battlefield:
 
     def display_winner(self):
         if len(self.robots) > 0:
-            print('ROBOTS!')
+            print('VICTORY!')
         else:
-            print('DINOSAURS!')
+            print('Defeat...')
 
 #################### TEAM BATTLE ####################
 
