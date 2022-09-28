@@ -55,7 +55,7 @@ class Battlefield:
         print('Something\'s coming...')
         enemies = ''
         for dino in dinos:
-            enemies += f'{dino.name}!'
+            enemies += f'{dino.name}! '
         sleep(1.5)
         print(enemies)
         sleep(1.5)
@@ -81,9 +81,13 @@ class Battlefield:
                     if target.health <= 0:
                         all_fighters.remove(target)
                         self.dinosaurs.remove(target)
+            sleep(2)
 
 
     def display_winner(self):
+        sleep(.5)
+        print('...')
+        sleep(1)
         if len(self.robots) > 0:
             print('VICTORY!')
         else:

@@ -23,10 +23,10 @@ class Robot:
         sleep(.5)
         return chosen_weapon
 
-    def target_selection(self, targets, combatants): # There's a bug here that if the number of targets is reduced to 2 before all 3 attackers attack, therfore shortening the list, it'll skip ahead before the last attacker can attack
+    def target_selection(self, targets): # There's a bug here that if the number of targets is reduced to 2 before all 3 attackers attack, therfore shortening the list, it'll skip ahead before the last attacker can attack
         print('Enemies:')
         i = 1
-        for combatant in combatants:
+        for target in targets:
             print(f'[{i}] {target.name} ({target.health} health remaining)')
             i += 1
         target_index = 0
